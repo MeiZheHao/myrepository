@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--放行所有静态资源，例如html，css，img等-->
+    <mvc:default-servlet-handler />
+    <!--因为上面的配置的放行静态资源，会导致注解请求失效，添加注解映射的支持-->
+    <mvc:annotation-driven />
+    <!--激活spring MVC的注释自动扫描功能-->
+    <context:component-scan base-package="com.youyue.demo.controller"/>
+    <!-- 对模型视图名称的解析，定义转发返回前缀名和后缀名，例如返回login.jsp,返回/WEB-INF/jsp/login.jsp
+    即在模型视图名称添加前后缀(如果最后一个还是表示文件夹,则最后的斜杠不要漏了) P-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/><!--设置JSP文件的目录位置-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
